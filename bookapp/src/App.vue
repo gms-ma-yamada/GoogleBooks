@@ -1,32 +1,63 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+  <Header/>
+    <v-main>
+      <v-container>
+        <router-view @add-book-list="addBook"/>
+      </v-container>
+    </v-main>
+  <Footer/>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Header from '@/global/Header';
+import Footer from '@/global/Footer';
+const STORAGE_KEY = 'books'
 
-#nav {
-  padding: 30px;
-}
+export default {
+  components: {
+    Header,
+    Footer
+    },
+  name: 'App',
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  data(){
+    return {
+        books: [],
+        newBook: null
+    }
+  },
+  mounted() {
+    if (localStorage.getItem(STORAGE_KEY)) {
+    try {
+      this.books = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    } catch(e) {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+    }
+  },
+  methods: {
+    addBook(e) {
+      this.books.push({
+        id: this.books.length,
+        title: e.title,
+        image: e.image,
+        description: e.description,
+        readDate: '',
+        memo: ''
+      });
+      this.newBook = '';
+      this.saveCats();
+    },
+    removeCat(x) {
+      this.books.splice(x, 1);
+      this.saveBooks();
+    },
+    saveCats() {
+      const parsed = JSON.stringify(this.books);
+      localStorage.setItem(STORAGE_KEY, parsed);
+    }
+  }
+};
+</script>
