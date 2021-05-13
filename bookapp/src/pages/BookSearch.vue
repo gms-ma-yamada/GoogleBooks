@@ -30,7 +30,7 @@
                 <v-col cols="8">
                     <v-card-title>{{ book.title }}</v-card-title>
                     {{ book.description }}
-                    <v-space></v-space>
+                    <v-spacer></v-spacer>
                     <v-card-actions>
                         <v-btn fab dark color="indigo" @click="addBookList(index)">
                             <v-icon dark>mdi-plus</v-icon>
