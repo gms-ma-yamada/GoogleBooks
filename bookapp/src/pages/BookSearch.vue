@@ -18,6 +18,7 @@
             <v-btn color="secondary" to="/" >
             一覧に戻る
             </v-btn>
+            <v-btn>テストする２</v-btn>
         </v-col>
     </v-row>
     <v-row>
