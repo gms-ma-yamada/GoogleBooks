@@ -22,6 +22,7 @@
             <v-btn>テストする3</v-btn>
             <v-btn>テストする4</v-btn>
             <v-btn>テストする5</v-btn>
+            <v-btn>テストする6</v-btn>
         </v-col>
     </v-row>
     <v-row>
