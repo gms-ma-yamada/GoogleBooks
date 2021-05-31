@@ -12,6 +12,7 @@
             <v-btn color="primary" @click="search(keyword)">
                 検索する
             </v-btn>
+            <v-btn>テストする</v-btn>
         </v-col>
         <v-col col="3">
             <v-btn color="secondary" to="/" >
